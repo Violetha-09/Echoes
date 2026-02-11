@@ -1,19 +1,19 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
-// DATA DARI SUPABASE KAMU (Tanpa https://)
-$host = 'db.quxhhvvkwrruvpwfysqi.supabase.co'; 
+// DATA HOST POOLER UNTUK REGION MUMBAI (PORT 6543)
+$host = 'aws-0-ap-south-1.pooler.supabase.com'; 
 $db   = 'postgres';
-$user = 'postgres';
+// User pooler menggunakan format: postgres.[PROJECT_ID]
+$user = 'postgres.quxhhvvkwrruvpwfysqi'; 
 $pass = 'NyeblakSelalu2@'; 
-$port = '5432';
+$port = '6543'; // Jalur khusus agar tidak error di Vercel
 
 try {
-    // Memperbaiki penulisan DSN agar terbaca oleh Vercel
+    // Pastikan hanya satu tanda dollar ($dsn)
     $dsn = "pgsql:host=$host;port=$port;dbname=$db";
     $conn = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 } catch (PDOException $e) {
-     // Ini akan menampilkan pesan jika masih gagal konek
      die("Koneksi gagal: " . $e->getMessage());
 }
 ?>
