@@ -1,16 +1,17 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "echoes_db";
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
-$conn = new mysqli($host, $user, $pass, $db);
+// Ganti data di bawah ini dengan info dari Supabase (Project Settings > Database)
+$host = 'your-project-id.supabase.co'; // Contoh: db.xyz.supabase.co
+$db   = 'postgres';
+$user = 'postgres';
+$pass = 'PASSWORD_ANDA'; // Password yang dibuat saat buat project
+$port = '5432';
 
-if ($conn->connect_error) {
-    die("Koneksi Database Gagal: " . $conn->connect_error);
-}
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+try {
+    $dsn = "pgsql:host=$host;port=$port;dbname=$db";
+    $conn = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+} catch (PDOException $e) {
+     die("Connection failed: " . $e->getMessage());
 }
 ?>
