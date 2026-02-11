@@ -1,19 +1,23 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
-// DATA HOST POOLER UNTUK REGION MUMBAI (PORT 6543)
+// DATA PASTI UNTUK REGION MUMBAI (PORT 6543)
 $host = 'aws-0-ap-south-1.pooler.supabase.com'; 
 $db   = 'postgres';
-// User pooler menggunakan format: postgres.[PROJECT_ID]
 $user = 'postgres.quxhhvvkwrruvpwfysqi'; 
 $pass = 'NyeblakSelalu2@'; 
-$port = '6543'; // Jalur khusus agar tidak error di Vercel
+$port = '6543'; 
 
 try {
-    // Pastikan hanya satu tanda dollar ($dsn)
+    // Format DSN harus rapat tanpa spasi yang aneh
     $dsn = "pgsql:host=$host;port=$port;dbname=$db";
-    $conn = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    $conn = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
 } catch (PDOException $e) {
-     die("Koneksi gagal: " . $e->getMessage());
+     // Menampilkan error yang lebih jelas untuk kita debug
+     echo "Koneksi Bermasalah: " . $e->getMessage();
+     exit;
 }
 ?>
