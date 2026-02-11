@@ -14,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['publish'])) {
         $base64_image = 'data:image/' . $file_type . ';base64,' . base64_encode($data);
     }
 
+    // Perbaikan: PostgreSQL menggunakan CURRENT_TIMESTAMP
     $stmt = $conn->prepare("INSERT INTO stories (user_id, note, photo_path, created_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP)");
     if($stmt->execute([$u_id, $note, $base64_image])) {
-        header("Location: dashboard.php");
-        exit;
+        header("Location: dashboard.php"); exit;
     }
 }
 ?>

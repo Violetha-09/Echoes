@@ -1,11 +1,11 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
-// GANTI DATA DI BAWAH INI DENGAN INFO DARI SUPABASE
-$host = 'https://quxhhvvkwrruvpwfysqi.supabase.co'; // Contoh: db.abcxyz.supabase.co
+// Ambil data ini dari Supabase: Project Settings > Database
+$host = 'Violetha-09\'s Project.supabase.co'; 
 $db   = 'postgres';
 $user = 'postgres';
-$pass = 'NyeblakSelalu2@'; // Password yang dibuat saat buat project
+$pass = 'NyeblakSelalu2@'; 
 $port = '5432';
 
 try {
