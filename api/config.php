@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
 $host = 'your-project-id.supabase.co'; // Contoh: db.xyz.supabase.co
 $db   = 'postgres';
 $user = 'postgres';
-$pass = 'PASSWORD_ANDA'; // Password yang dibuat saat buat project
+$pass = 'NyeblakSelalu2@'; // Password yang dibuat saat buat project
 $port = '5432';
 
 try {
