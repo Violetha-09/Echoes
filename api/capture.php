@@ -1,9 +1,7 @@
 <?php 
 include 'config.php'; 
 if(!isset($_SESSION['user_id'])) { header("Location: index.php"); exit; }
-
 $u_id = $_SESSION['user_id'];
-$user_color = $_SESSION['fav_color'] ?? '#542665'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['publish'])) {
     $note = $_POST['note'];
